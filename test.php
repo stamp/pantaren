@@ -84,8 +84,8 @@ function processEvent($pin,$value) {
 
                 $cans = 0;
                 $tickets = 0;
-                echo "Count: $cans, Tickets: $tickets                        RESET\n";
-                db()->query("UPDATE counters SET cans=%d,tickets=%d,total=%d WHERE counter=%d",$cans,$tickets,$total,$counter);
+                echo "Count: $cans, Tickets: $tickets                        Total: $total, RESET\n";
+                db()->query("UPDATE counters SET cans=%d,tickets=%d WHERE counter=%d",$cans,$tickets,$counter);
                 break;
             case 1: // left
                 if ( $value == 1 ) // Ignore the start of the can
@@ -139,7 +139,7 @@ function addCan($length,$pipe) {
 
     db()->query("UPDATE counters SET cans=%d,tickets=%d,total=%d WHERE counter=%d",$cans,$tickets,$total,$counter);
 
-    echo "Count: $cans, Tickets: $tickets                        Pipe: $pipe, Type: $type ($length)\n";
+    echo "Count: $cans, Tickets: $tickets                        Total: $total, Pipe: $pipe, Type: $type ($length)\n";
 }
 
 print_r($result);
